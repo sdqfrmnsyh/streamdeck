@@ -1,11 +1,11 @@
-# StreamDeck (Openbox Soundboard)
+# ElStream (Linux Soundboard)
 
-Konfigurasi **soundboard berbasis shortcut / keybind** di **Openbox** yang berfungsi seperti **Stream Deck**, tanpa hardware tambahan.
+Konfigurasi **soundboard berbasis shortcut / keybind** di **Linux** yang berfungsi seperti **Stream Deck**, tanpa hardware tambahan.
 
-Project ini memanfaatkan **keybind Openbox** untuk memutar suara (sound effect, voice clip, dll) menggunakan pemutar audio CLI. Cocok untuk:
+Project ini memanfaatkan **keybind** untuk memutar suara (sound effect, voice clip, dll) menggunakan pemutar audio CLI. Cocok untuk:
 - Soundboard streaming
 - Shortcut efek suara
-- Macro audio di Linux ringan (Openbox)
+- Macro audio di Linux ringan
 
 > ⚠️ **Bukan Elgato Stream Deck**  
 > Ini adalah implementasi software-only menggunakan keyboard shortcut.
@@ -19,8 +19,7 @@ Project ini memanfaatkan **keybind Openbox** untuk memutar suara (sound effect, 
 ├── .config/
 │   └── openbox/
 │       └── rc.xml        # Keybind Openbox
-└── .streamdeck/
-    └── sounds/           # File audio soundboard
+└── .streamdeck/          # File audio soundboard
 ```
 
 ---
@@ -43,40 +42,36 @@ Pastikan sudah terpasang:
 
 ---
 
-### Contoh instalasi (Arch / CachyOS)
+## 🚀 Instalasi
+
+### 1. Download sound effect
+
+Beberapa website gratis untuk sound effect (cocok untuk soundboard):
+
+Mixkit
+https://mixkit.co/free-sound-effects/
+
+Pixabay Sound Effects
+https://pixabay.com/sound-effects/
+
+Freesound
+https://freesound.org
+
+Y2Mate
+https://v6.www-y2mate.com/
+
+Zapsplat
+https://www.zapsplat.com
+
+SoundJay
+https://www.soundjay.com/
+
+### 2. Install paket (Arch)
 ```bash
 sudo pacman -S mpg123 xorg-xev
 ```
 
 > Untuk distro lain (Ubuntu, Fedora, dll), silakan sesuaikan package manager masing-masing.
-
----
-
-## 🧠 Cara Kerja
-
-Setiap tombol keyboard di-bind untuk menjalankan perintah **mpg123** yang memutar file suara tertentu.
-
-Mirip konsep tombol Stream Deck:
-> Tekan tombol → aksi langsung dijalankan
-
----
-
-## 🚀 Instalasi
-
-### 1. Clone repository
-```bash
-git clone https://github.com/sdqfrmnsyh/streamdeck.git
-cd streamdeck
-```
-
-### 2. Salin konfigurasi Openbox (jika menggunakan Openbox)
-```bash
-cp .config/openbox/* ~/.config/openbox/
-```
-
-> Jika menggunakan **DE / WM lain**, cukup ambil konsep keybind-nya dan sesuaikan dengan sistem masing-masing.
-
----
 
 ### 3. Buat folder soundboard
 ```bash
@@ -85,21 +80,11 @@ mkdir -p ~/.streamdeck/sounds
 
 ### 4. Masukkan file suara
 ```bash
-cp *.mp3 ~/.streamdeck/sounds/
+cp $HOME/Downloads/*.mp3 ~/.streamdeck/sounds/
 ```
 
----
 
-### 5. Reload WM / DE
-```bash
-openbox --reconfigure
-```
-
-Atau logout/login ulang sesuai DE / WM yang digunakan.
-
----
-
-## ⌨️ Mengetahui Nama Keybind dengan xev
+## 5. Mengetahui Nama Keybind dengan xev
 
 Gunakan `xev` untuk mengetahui **nama tombol (keysym)** yang akan dipakai sebagai keybind.
 
@@ -127,43 +112,46 @@ state 0x0, keycode 36 (keysym 0xff0d, Return), same_screen YES
 Return
 ```
 
----
-
-## ⌨️ Contoh Keybind Openbox
+## 6. Tambahkan Keybind Openbox
 
 Edit file:
-```
-~/.config/openbox/rc.xml
+```bash
+sudo nano ~/.config/openbox/rc.xml
 ```
 
 Contoh konfigurasi soundboard:
 
 ```xml
-<keybind key="W-Return">
+<keybind key="Return">
   <action name="Execute">
-    <command>mpg123 ~/.streamdeck/sounds/airhorn.mp3</command>
+    <command>mpg123 ~/.streamdeck/aduh.mp3</command>
   </action>
 </keybind>
 
-<keybind key="W-1">
+<keybind key="1">
   <action name="Execute">
-    <command>mpg123 ~/.streamdeck/sounds/laugh.mp3</command>
+    <command>mpg123 ~/.streamdeck/BESI.mp3</command>
   </action>
 </keybind>
 ```
 
-> `W` = Super / Windows key
+> Jika menggunakan **DE / WM lain**, cukup ambil konsep keybind-nya dan sesuaikan dengan sistem masing-masing.
+
+### 5. Reload WM / DE
+```bash
+openbox --reconfigure
+```
+
+Atau logout/login ulang sesuai DE / WM yang digunakan.
 
 ---
 
-## 🔊 Menambahkan Sound Baru
+## 🧠 Cara Kerja
 
-1. Simpan file audio ke:
-   ```
-   ~/.streamdeck/sounds/
-   ```
-2. Tambahkan shortcut sesuai **DE / WM masing-masing**
-3. Reload / restart DE / WM
+Setiap tombol keyboard di-bind untuk menjalankan perintah **mpg123** yang memutar file suara tertentu.
+
+Mirip konsep tombol Stream Deck:
+> Tekan tombol → aksi langsung dijalankan
 
 ---
 
@@ -171,7 +159,6 @@ Contoh konfigurasi soundboard:
 
 - Gunakan **sound pendek** agar respons cepat
 - Hindari konflik shortcut dengan aplikasi lain
-- Gunakan `mpg123 -q` untuk mode silent
 - Bisa digabung dengan:
   - Script bash
   - OBS hotkey
@@ -202,8 +189,7 @@ mpg123 "${SOUNDS[RANDOM % ${#SOUNDS[@]}]}"
 
 ## 📜 Lisensi
 
-Bebas digunakan dan dimodifikasi sesuai kebutuhan.
-Silakan tambahkan lisensi (MIT / GPL) jika diperlukan.
+Masukkan teks...
 
 ---
 
@@ -217,4 +203,4 @@ Project ini meniru **konsep Stream Deck** dengan:
 
 ---
 
-Happy hacking 🎧🔥
+Hatur nuhun🎧🔥
