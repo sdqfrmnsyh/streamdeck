@@ -75,12 +75,12 @@ sudo pacman -S mpg123 xorg-xev
 
 ### 3. Buat folder soundboard
 ```bash
-mkdir -p ~/.streamdeck/sounds
+mkdir -p ~/.streamdeck/
 ```
 
 ### 4. Masukkan file suara
 ```bash
-cp $HOME/Downloads/*.mp3 ~/.streamdeck/sounds/
+cp $HOME/Downloads/*.mp3 ~/.streamdeck/
 ```
 
 
